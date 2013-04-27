@@ -2,8 +2,66 @@
 <header>
 <script type="text/javascript" src="translator.js"></script>
 <script type="text/javascript" src="dicts.js"></script>
+<script type="text/javascript" src="resampler.js"></script>
+<script type="text/javascript" src="XAudioServer.js"></script>
+<script type="text/javascript" src="player.js"></script>
 </header>
 <body>
 None
+<script type="text/javascript">
+m=new MorseTraslator(ENGLISH_TO_MORSE);
+res=m.translateText('this is a fuken test');
+m.translateMorse(res);
+
+var sample = [];
+var samplePos=0;
+var finishedPlaying=true;
+
+function audioGenerator(samplesToGenerate) {
+    if (samplesToGenerate == 0) {
+        return [];
+    }
+    samplesToGenerate = Math.min(samplesToGenerate, sample.length - samplePos);
+    if (samplesToGenerate > 0) {
+        ret = sample.slice(samplePos, samplePos + samplesToGenerate);
+        samplePos += samplesToGenerate;
+        return ret;
+    } else {
+        finishedPlaying = true;
+        return [];
+    }
+}
+var SAMPLE_RATE=8000;
+var audioServer=new XAudioServer(	1, SAMPLE_RATE, SAMPLE_RATE >> 2, SAMPLE_RATE << 1, audioGenerator, 1,  function(){alert('Sound failed');})
+
+
+wpm=30;
+fwpm=30;
+pitch=700;
+vol=.5;
+
+
+audioServer.changeVolume(0);
+finishedPlaying=true;
+
+times=[120,120,40,1000];
+
+var counterIncrementAmount = Math.PI * 2 * pitch / SAMPLE_RATE;
+
+on=1;
+var buf=[];
+for (var t = 0; t < times.length; t += 1) {
+    var duration = SAMPLE_RATE * times[t] / 1000;
+    for (var i = 0; i < duration; i += 1) {
+        buf.push(on * Math.sin(i * counterIncrementAmount));
+    }
+    on = 1 - on;
+}
+sample=buf;
+samplePos=0;
+audioServer.changeVolume(vol);
+audioServer.writeAudio(buf);
+finishedPlaying=false;
+</script>
 </body>
 </html>
