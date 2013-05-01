@@ -42,4 +42,5 @@ $(function() {
 
     
     $( "#wpmlow" ).combobox();
+    $( "#wpmhigh" ).combobox();
   });

@@ -1,3 +1,4 @@
+var dddd="";
 (function($) {
 	$.widget("ui.combobox", {
 		_create: function() {
@@ -57,6 +58,7 @@
 				input.autocomplete("search", "");
 				input.focus();
 			});
+			input.val(select.find(":selected").text());
 		}
 	});
 
