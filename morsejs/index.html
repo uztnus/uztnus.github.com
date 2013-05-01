@@ -4,66 +4,114 @@
 <meta charset="UTF-8">
 <title>Morse trainer</title>
 <link href="css/smoothness/jquery-ui-1.10.2.custom.css" rel="stylesheet">
+<link href="css/demo_table.css" rel="stylesheet">
+<link href="css/demo_page.css" rel="stylesheet">
 <link href="morse.css" rel="stylesheet">
 <script src="js/jquery-1.9.1.js"></script>
 <script src="js/jquery-ui-1.10.2.custom.js"></script>
+<script src="js/jquery.dataTables.js"></script>
 <script src="js/combobox.js" type="text/javascript" charset="utf-8"></script>
 <script src="gui.js"></script>
 </head>
 <body>
-	<div id='morsetrainer'>
-		<div id="toolbar" class="ui-widget-header ui-corner-all">
+	<div id='morsetrainer' style="width: 99%">
+		<div id="toolbar" class="ui-widget-header ui-corner-all"
+			style="width: 100%">
 			<button id="play">play</button>
 			<button id="stop">stop</button>
-			<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</span> 
-			 Speed <select id="wpmlow">
-					<option value="1" >1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12" selected>12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					
-
+			<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span> Speed <select id="wpmlow">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12" selected>12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+			</select> / <select id="wpmhigh">
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18" selected>18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+			</select> WPM <span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> Pitch <select
+				id="pitch">
+				<option value="100">100</option>
+				<option value="200">200</option>
+				<option value="300">300</option>
+				<option value="400">400</option>
+				<option value="500">500</option>
+				<option value="600">600</option>
+				<option value="700" selected>700</option>
+				<option value="800">800</option>
+				<option value="900">900</option>
+				<option value="1000">1000</option>
+				<option value="1100">1100</option>
+				<option value="1200">1200</option>
+				<option value="1300">1300</option>
+				<option value="1400">1400</option>
+				<option value="1500">1500</option>
+				<option value="1600">1600</option>
+				<option value="1700">1700</option>
+				<option value="1800">1800</option>
+				<option value="1900">1900</option>
 			</select>
-			 / <select id="wpmhigh">
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18" selected>18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-			</select>
-		WPM
-		<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</span> 
 		</div>
-		
+		<!-- end toolbar-->
+		<div id='mt-main'
+			style='display: inline-block; width: 100%; height: 80%; border: 1px black solid'>
+			&nbsp;
+			<div id='mt-left'
+				style='float: left; width: 55%; height: 100%; border: 1px blue solid'>
+				<div id='mt-output'>
+				<textarea name="comments" rows="20" style="width:98%;" >
+Morse output
+</textarea>
+</div>
+<div id='mt-stats'>
+<u><b>Statistics</b></u>
+<table id='mt-stats-table' class='display'>
+<thead><tr><th>Sign</th><th>Hit</th><th>Miss</th><th>%</th></tr></thead>
+<tbody>
+<tr><td>R</td><td>20</td><td>2</td><td>90%</td></tr>
+<tr><td>S</td><td>20</td><td>2</td><td>90%</td></tr>
+<tr><td>M</td><td>20</td><td>2</td><td>90%</td></tr>
+</tbody>
+</table>
+</div>
+				
+			</div>
+			<div id='mt-right'
+				style='float: left; width: 35%; height: 100%; border: 1px red solid'>&nbsp;</div>
+		</div>
 	</div>
+
 </body>
 </html>

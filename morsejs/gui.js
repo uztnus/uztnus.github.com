@@ -43,4 +43,6 @@ $(function() {
     
     $( "#wpmlow" ).combobox();
     $( "#wpmhigh" ).combobox();
+    $( "#pitch" ).combobox();
+    $('#mt-stats-table').dataTable();
   });
