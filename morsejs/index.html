@@ -3,15 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Morse trainer</title>
-<link href="css/smoothness/jquery-ui-1.10.2.custom.css" rel="stylesheet">
-<link href="css/demo_table.css" rel="stylesheet">
-<link href="css/demo_page.css" rel="stylesheet">
-<link href="morse.css" rel="stylesheet">
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/jquery-ui-1.10.2.custom.js"></script>
-<script src="js/jquery.dataTables.js"></script>
-<script src="js/combobox.js" type="text/javascript" charset="utf-8"></script>
-<script src="gui.js"></script>
+<link href="css/lib/smoothness/jquery-ui-1.10.2.custom.css" rel="stylesheet">
+<style type="text/css" title="currentStyle">
+			@import "css/lib/demo_page.css";
+			@import "css/lib/demo_table.css";
+		</style>
+
+<link href="css/morse.css" rel="stylesheet">
+<script src="js/lib/jquery-1.9.1.js"></script>
+<script src="js/lib/jquery-ui-1.10.2.custom.js"></script>
+<script src="js/lib/jquery.dataTables.js"></script>
+<script src="js/lib/combobox.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/gui.js"></script>
 </head>
 <body>
 	<div id='morsetrainer' style="width: 99%">
@@ -127,6 +130,7 @@ Morse output
 									<td>90%</td>
 								</tr>
 							</tbody>
+							<tfoot><tr><th>Total</th><th>60</th><th>6</th><th>90%</th></tr></tfoot>
 						</table>
 					</div>
 					<div id='mt-time' style="width: 35%;float:left;">
@@ -137,7 +141,12 @@ Morse output
 				</div>
 			</div>
 			<div id='mt-right'
-				style='float: left; width: 35%; height: 100%; border: 1px red solid'>&nbsp;</div>
+				style='float: left; width: 35%; height: 100%; border: 1px red solid'>
+				<table>
+				<thead><tr><th>Sign</th><th>Code</th><th>Sign</th><th>Code</th></tr></thead>
+				<tbody></tbody>
+				</table>
+				</div>
 		</div>
 	</div>
 

@@ -44,5 +44,14 @@ $(function() {
     $( "#wpmlow" ).combobox();
     $( "#wpmhigh" ).combobox();
     $( "#pitch" ).combobox();
-    $('#mt-stats-table').dataTable();
+    $('#mt-stats-table').dataTable({
+    		"bPaginate": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": true,
+            "bJQueryUI": true
+            
+        });
   });
