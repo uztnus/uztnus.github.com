@@ -1,3 +1,7 @@
+//Globals
+var g_dict=MORSE_EN;
+
+
 $(function() {
 
     $( "#play" ).button({
@@ -54,4 +58,19 @@ $(function() {
             "bJQueryUI": true
             
         });
+
+    populateDictionaryTable(g_dict);
   });
+
+
+function populateDictionaryTable(dict){
+	k=Object.keys(dict);
+	half=k.length/2;
+	tb=$('#mt-codes>tbody');
+	for(var i=0;i<half;i++){
+		tb.append('<tr><td>'+k[i]+'</td><td>'+dict[k[i]]+'</td><td>'+k[i+half]+'</td><td>'+dict[k[i+half]]+'</td></tr>');
+	}
+	
+	
+	$('#mt-codes')
+};
