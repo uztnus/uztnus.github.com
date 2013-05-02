@@ -66,11 +66,22 @@ $(function() {
 function populateDictionaryTable(dict){
 	k=Object.keys(dict);
 	half=k.length/2;
-	tb=$('#mt-codes>tbody');
+	data=[];
 	for(var i=0;i<half;i++){
-		tb.append('<tr><td>'+k[i]+'</td><td>'+dict[k[i]]+'</td><td>'+k[i+half]+'</td><td>'+dict[k[i+half]]+'</td></tr>');
+		data.push([k[i],dict[k[i]],k[i+half],dict[k[i+half]]]);
 	}
 	
+	$('#mt-codes').dataTable({
+		"bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": false,
+        "bSort": true,
+        "bInfo": true,
+        "bAutoWidth": true,
+        "bJQueryUI": true,
+        "aoColumns":[  { "sTitle": "Sign" }, { "sTitle": "Code" },{ "sTitle": "Sign" }, { "sTitle": "Code" }],
+        "aaData":data
+        
+    });
 	
-	$('#mt-codes')
 };
