@@ -76,7 +76,7 @@ MorseAudio.prototype._addEndOfWord=function(times){
 MorseAudio.prototype.createTimeArray=function(data){
 	if(this.validate(data)){
 		res=[];	
-		for(i=0;i<data.length;i++){
+		for(var i=0;i<data.length;i++){
 			switch(data[i]){
 			case '.':
 				this._addDot(res);
@@ -98,25 +98,7 @@ MorseAudio.prototype.createTimeArray=function(data){
 
 
 MorseAudio.prototype._test = function () {
-	times=[120,120,40,1000];
-	times=this.createTimeArray("... -. -- .-.");
-	var counterIncrementAmount = Math.PI * 2 * this._pitch / this.SAMPLE_RATE;
-
-	on=1;
-	var buf=[];
-	for (var t = 0; t < times.length; t += 1) {
-		var duration = this.SAMPLE_RATE * times[t] / 1000;
-		for (var i = 0; i < duration; i += 1) {
-			buf.push(on * Math.sin(i * counterIncrementAmount));
-		}
-		on = 1 - on;
-	}
-	sample=buf;
-	samplePos=0;
-	this._audioServer.changeVolume(0.5);
-	this._audioServer.writeAudio(buf);
-	finishedPlaying=false;
-
+	this.play("... -. -- .-. ... -- ... --  ");
 };
 
 MorseAudio.prototype.play = function (string) {
