@@ -12,7 +12,6 @@ function MorseAudio(){
 	this._unitTime=80;
 	this._audioGenerator=function(samplesToGenerate) {
 		console.log("samples "+samplesToGenerate);
-		
 		if (samplesToGenerate == 0) {
 			return [];
 		}
@@ -22,7 +21,7 @@ function MorseAudio(){
 			self._samplePos += samplesToGenerate;
 			return ret;
 		} else {
-			finishedPlaying = true;
+			self._playing = false;
 			return [];
 		}
 	};
@@ -34,6 +33,13 @@ function MorseAudio(){
 			this._audioGenerator, 
 			1,
 			function(){alert('Sound failed');});
+	setInterval(
+		    function () {
+		        //Runs the check to see if we need to give more audio data to the lib:
+		        if (self._playing) {
+		            self._audioServer.executeCallback();
+		        }
+		    }, 20);
 	this.setUnitLength=function(wpm){
 		if(!this._playing){
 			this._unitTime = 60000 / (UNITS_PER_WORD * wpm);		
@@ -115,9 +121,10 @@ MorseAudio.prototype._test = function () {
 
 MorseAudio.prototype.play = function (string) {
 	times=this.createTimeArray(string);
-	buf=this._createBuffer(times);
+	this._sample =this._createBuffer(times);
+	this._samplePos=0;
 	this._audioServer.changeVolume(0.5);
-	this._audioServer.writeAudio(buf);
+	this._playing=true;
 
 };
 
