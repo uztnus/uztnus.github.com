@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Morse trainer</title>
-<link href="css/lib/smoothness/jquery-ui-1.10.2.custom.css" rel="stylesheet">
+<link href="css/lib/smoothness/jquery-ui-1.10.2.custom.css"
+	rel="stylesheet">
 <style type="text/css" title="currentStyle">
-			@import "css/lib/demo_page.css";
-			@import "css/lib/demo_table.css";
-		</style>
+@import "css/lib/demo_page.css";
+
+@import "css/lib/demo_table.css";
+</style>
 
 <link href="css/morse.css" rel="stylesheet">
 <script src="js/lib/jquery-1.9.1.js"></script>
@@ -17,6 +19,7 @@
 <script type="text/javascript" src="js/lib/resampler.js"></script>
 <script type="text/javascript" src="js/lib/XAudioServer.js"></script>
 <script src="js/dicts.js"></script>
+<script src="js/audio.js"></script>
 <script src="js/gui.js"></script>
 </head>
 <body>
@@ -26,27 +29,8 @@
 			<button id="play">play</button>
 			<button id="stop">stop</button>
 			<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			</span> Speed <select id="wpmlow">
+			</span> Speed <select id="wpm">
 				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12" selected>12</option>
-				<option value="13">13</option>
-				<option value="14">14</option>
-				<option value="15">15</option>
-				<option value="16">16</option>
-				<option value="17">17</option>
-				<option value="18">18</option>
-				<option value="19">19</option>
-			</select> / <select id="wpmhigh">
 				<option value="2">2</option>
 				<option value="3">3</option>
 				<option value="4">4</option>
@@ -60,12 +44,11 @@
 				<option value="12">12</option>
 				<option value="13">13</option>
 				<option value="14">14</option>
-				<option value="15">15</option>
+				<option value="15" selected>15</option>
 				<option value="16">16</option>
 				<option value="17">17</option>
-				<option value="18" selected>18</option>
+				<option value="18">18</option>
 				<option value="19">19</option>
-				<option value="20">20</option>
 			</select> WPM <span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> Pitch <select
 				id="pitch">
@@ -102,7 +85,7 @@ Morse output
 </textarea>
 				</div>
 				<div id='mt-left-low'>
-					<div id='mt-stats' style="width: 60%;float:left;">
+					<div id='mt-stats' style="width: 60%; float: left;">
 						<u><b>Statistics</b></u>
 						<table id='mt-stats-table' class='display'>
 							<thead>
@@ -133,20 +116,51 @@ Morse output
 									<td>90%</td>
 								</tr>
 							</tbody>
-							<tfoot><tr><th>Total</th><th>60</th><th>6</th><th>90%</th></tr></tfoot>
+							<tfoot>
+								<tr>
+									<th>Total</th>
+									<th>60</th>
+									<th>6</th>
+									<th>90%</th>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
-					<div id='mt-time' style="width: 35%;float:left;">
-					<u><b>Time</b></u>
-					<br>
-					<input type='text' value="300">
+					<div id='mt-time' style="width: 35%; float: left;">
+						<u><b>Time</b></u> <br> <input type='text' value="300">
+						<br> <b>One unit:</b> 120ms <br>
+						<table id='mt-time-explanation'>
+							<thead>
+								<tr>
+									<th>Symbol</th>
+									<th>Units</th>
+								</tr>
+								</thead>
+								<tr>
+									<td>dit</td>
+									<td>1 sound , 1 silence</td>
+								</tr>
+								<tr>
+									<td>dah</td>
+									<td>3 sound , 1 silence</td>
+								</tr>
+								<tr>
+									<td>End of letter</td>
+									<td>additional 2 silence (besides the silence after dit/dah)</td>
+								</tr>
+								<tr>
+									<td>Space (end of word)</td>
+									<td>additional 4 units of silence</td>
+								</tr>
+						</table>
 					</div>
 				</div>
 			</div>
 			<div id='mt-right'
 				style='float: left; width: 35%; height: 100%; border: 1px red solid'>
-				<table id=mt-codes>	</table>
-				</div>
+				<table id=mt-codes>
+				</table>
+			</div>
 		</div>
 	</div>
 

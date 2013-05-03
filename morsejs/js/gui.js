@@ -45,8 +45,7 @@ $(function() {
     });
 
     
-    $( "#wpmlow" ).combobox();
-    $( "#wpmhigh" ).combobox();
+    $( "#wpm" ).combobox();
     $( "#pitch" ).combobox();
     $('#mt-stats-table').dataTable({
     		"bPaginate": true,
@@ -58,7 +57,17 @@ $(function() {
             "bJQueryUI": true
             
         });
-
+    $('#mt-time-explanation').dataTable({
+		"bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": false,
+        "bSort": false,
+        "bInfo": false,
+        "bAutoWidth": true,
+        "bJQueryUI": true
+        
+    });
+    
     populateDictionaryTable(g_dict);
   });
 
@@ -71,6 +80,7 @@ function populateDictionaryTable(dict){
 		data.push([k[i],dict[k[i]],k[i+half],dict[k[i+half]]]);
 	}
 	
+	
 	$('#mt-codes').dataTable({
 		"bPaginate": false,
         "bLengthChange": false,
@@ -81,7 +91,6 @@ function populateDictionaryTable(dict){
         "bJQueryUI": true,
         "aoColumns":[  { "sTitle": "Sign" }, { "sTitle": "Code" },{ "sTitle": "Sign" }, { "sTitle": "Code" }],
         "aaData":data
-        
     });
 	
 };
