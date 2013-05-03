@@ -1,6 +1,7 @@
 //Globals
 var g_dict=MORSE_EN;
-
+var g_translator=new MorseTraslator(g_dict);
+var g_morseAudio=new MorseAudio();
 
 $(function() {
 
@@ -100,5 +101,12 @@ function populateDictionaryTable(dict){
         "aoColumns":[  { "sTitle": "Sign" }, { "sTitle": "Code" },{ "sTitle": "Sign" }, { "sTitle": "Code" }],
         "aaData":data
     });
-	
+	$('#mt-codes>tbody>tr>td').click(function(e){
+		t=e.currentTarget.innerText;
+		toPlay=t;
+		if(!g_morseAudio.validate(t)){
+			toPlay=g_translator.translateText(t);
+		}
+		g_morseAudio.play(toPlay);
+	});
 };

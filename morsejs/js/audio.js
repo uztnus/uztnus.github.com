@@ -1,6 +1,6 @@
 var UNITS_PER_WORD = 70; 
 
-var g_morseAudio=new MorseAudio();
+
 
 function MorseAudio(){
 	this.SAMPLE_RATE=8000;
@@ -11,7 +11,11 @@ function MorseAudio(){
 	this._pitch=700;
 	this._unitTime=80;
 	this._audioGenerator=function(samplesToGenerate) {
-		console.log("samples "+samplesToGenerate);
+		if(!self._playing){
+			self._samplePos=0;
+			self._sample=[];
+			return [];
+		}
 		if (samplesToGenerate == 0) {
 			return [];
 		}
@@ -102,6 +106,10 @@ MorseAudio.prototype._test = function () {
 };
 
 MorseAudio.prototype.play = function (string) {
+	if(this.isPlaying()){
+		console.log("Currently playing - please stop");
+		return;
+	}
 	times=this.createTimeArray(string);
 	this._sample =this._createBuffer(times);
 	this._samplePos=0;
@@ -131,9 +139,9 @@ MorseAudio.prototype._createBuffer=function(times){
 };
 
 MorseAudio.prototype.isPlaying = function(){
-
+	return this._playing;
 };
 
 MorseAudio.prototype.stop = function(){
-
+	this._playing=false;
 };
