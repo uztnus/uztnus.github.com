@@ -1,15 +1,15 @@
 <html>
 <header>
-<script type="text/javascript" src="translator.js"></script>
-<script type="text/javascript" src="dicts.js"></script>
-<script type="text/javascript" src="resampler.js"></script>
-<script type="text/javascript" src="XAudioServer.js"></script>
+<script type="text/javascript" src="js/translator.js"></script>
+<script type="text/javascript" src="js/dicts.js"></script>
+<script type="text/javascript" src="js/lib/resampler.js"></script>
+<script type="text/javascript" src="js/lib/XAudioServer.js"></script>
 <script type="text/javascript" src="player.js"></script>
 </header>
 <body>
 None
 <script type="text/javascript">
-m=new MorseTraslator(ENGLISH_TO_MORSE);
+m=new MorseTraslator(MORSE_EN);
 res=m.translateText('this is a fuken test');
 m.translateMorse(res);
 
