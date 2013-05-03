@@ -43,7 +43,15 @@ $(function() {
         }
       });
     });
-
+    $( "#test" ).button({
+        text: false,
+        icons: {
+          primary: "ui-icon-circle-check"
+        }
+      })
+      .click(function() {
+    	  g_morseAudio._test();
+      });
     
     $( "#wpm" ).combobox();
     $( "#pitch" ).combobox();
