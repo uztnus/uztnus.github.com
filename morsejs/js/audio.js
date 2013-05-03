@@ -11,6 +11,8 @@ function MorseAudio(){
 	this._pitch=700;
 	this._unitTime=80;
 	this._audioGenerator=function(samplesToGenerate) {
+		console.log("samples "+samplesToGenerate);
+		
 		if (samplesToGenerate == 0) {
 			return [];
 		}

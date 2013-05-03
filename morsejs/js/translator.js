@@ -1,3 +1,6 @@
+
+
+
 function MorseTraslator(dictionary){
 	for ( var i in dictionary) {
 		if(!dictionary[i].match("^[\.|-\\s]+$"))
