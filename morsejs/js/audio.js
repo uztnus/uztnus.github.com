@@ -114,15 +114,32 @@ MorseAudio.prototype._test = function () {
 };
 
 MorseAudio.prototype.play = function (string) {
-	this.validate(string);
+	times=this.createTimeArray(string);
+	buf=this._createBuffer(times);
+	this._audioServer.changeVolume(0.5);
+	this._audioServer.writeAudio(buf);
+
 };
 
-MorseAudio.prototype.validate = function (string) {
+MorseAudio.prototype.validate=function(string){
 	if(!string.match("^[\.-\\s]+$"))
 		return false;
 	return true;
 };
 
+MorseAudio.prototype._createBuffer=function(times){
+	on=1;
+	var counterIncrementAmount = Math.PI * 2 * this._pitch / this.SAMPLE_RATE;
+	var buf=[];
+	for (var t = 0; t < times.length; t += 1) {
+		var duration = this.SAMPLE_RATE * times[t] / 1000;
+		for (var i = 0; i < duration; i += 1) {
+			buf.push(on * Math.sin(i * counterIncrementAmount));
+		}
+		on = 1 - on;
+	}
+	return buf;
+};
 
 MorseAudio.prototype.isPlaying = function(){
 

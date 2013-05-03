@@ -38,6 +38,7 @@ MorseTraslator.prototype.translateMorse = function (string) {
 	return res;
 };
 
+
 MorseTraslator.prototype.isValid= function (ch) { return this._dic[ch]!=null;};
 
 MorseTraslator.prototype.cleanString= function (string) {

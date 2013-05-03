@@ -10,7 +10,8 @@ $(function() {
       }
     })
     .click(function() {
-    	toPlay=$('#playData').val();
+    	toPlay=$('#translated').val();
+    	g_morseAudio.play(toPlay);
     });
     $('#playData').bind('input propertychange',function() {
     	$('#translated').text(g_translator.translateText($('#playData').val()));
