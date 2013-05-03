@@ -11,9 +11,13 @@ function MorseTraslator(dictionary){
 
 MorseTraslator.prototype.translateText = function (string) {
 	var res="";
-	for ( var i in string) {
-		res+=this._dic[string[i]]+" ";
-
+	var s=this.cleanString(string);
+	for ( var i in s) {
+		if(s[i]!=' '){
+			res+=this._dic[s[i]]+" ";
+		}
+		else
+			res+=" ";
 	}
 	return res.slice(0,-1);
 };
@@ -22,7 +26,7 @@ MorseTraslator.prototype.getLetter = function (encoded) {
 	for(var i in this._dic){
 		if(this._dic[i]==encoded)
 			return i;
-	}
+	};
 };
 
 MorseTraslator.prototype.translateMorse = function (string) {
@@ -36,3 +40,9 @@ MorseTraslator.prototype.translateMorse = function (string) {
 
 MorseTraslator.prototype.isValid= function (ch) { return this._dic[ch]!=null;};
 
+MorseTraslator.prototype.cleanString= function (string) {
+	var s= string.toUpperCase();
+	s=s.replace(/\n/gm,"");
+	s=s.replace(/\s+/g, ' ');
+	return s;
+};
