@@ -1,6 +1,8 @@
 //Globals
 var g_dict=MORSE_EN;
 var g_translator=new MorseTraslator(g_dict);
+var g_morseAudio=new MorseAudio();
+
 $(function() {
 
     $( "#play" ).button({
