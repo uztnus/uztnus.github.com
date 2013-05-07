@@ -24,7 +24,20 @@
 <script src="js/gui.js"></script>
 </head>
 <body>
-	<div id='morsetrainer' style="width: 99%">
+ 
+<div id="mt-tabs">
+  <ul>
+    <li><a href="#tabs-1">Traslator</a></li>
+    <li><a href="#tabs-2">Trainer</a></li>
+    <li><a href="#tabs-3">Stats</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p><textarea rows="20" cols="80" id='playData'></textarea> 
+<textarea rows="20" cols="80" id='translated' readonly=true></textarea>
+<button id="mt-play-translated">play</button>
+</p>
+  </div>
+  <div id="tabs-2">
 		<div id="toolbar" class="ui-widget-header ui-corner-all"
 			style="width: 100%">
 			<button id="play">play</button>
@@ -164,6 +177,14 @@ Morse output
 				</table>
 			</div>
 		</div>
+  </div>
+  <div id="tabs-3">
+    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+  </div>
+</div>
+	<div id='morsetrainer' style="width: 99%">
+
 	</div>
 
 </body>
