@@ -29,6 +29,11 @@ $(function() {
         };
       }
       $( this ).button( "option", options );
+      if($('#mt-tabs').tabs("option","active")==0){
+    	  toPlay=$('#translated').val();
+    	  g_morseAudio.play(toPlay);
+      }
+
     });
     $( "#stop" ).button({
       text: false,
@@ -85,8 +90,6 @@ $(function() {
         }
       })
       .click(function() {
-      	toPlay=$('#translated').val();
-      	g_morseAudio.play(toPlay);
       });
       $('#playData').bind('input propertychange',function() {
       	$('#translated').text(g_translator.translateText($('#playData').val()));
