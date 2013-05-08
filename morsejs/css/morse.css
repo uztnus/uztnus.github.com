@@ -8,64 +8,9 @@
   }
   
   
-/* combobox*/
-/* Combobox Input */
-.ui-autocomplete-input {
-    border: 1px solid #cacaca;
-    outline: 0 none;
-    font-size: inherit;
-}
 
 /* Combobox button */
 body {
     text-decoration: none;
     font: normal normal normal 13px/1.5em "Lucida Grande", Lucida, Verdana, sans-serif;
-}
-.ui-button {
-    height: 24px;
-    width: 25px;
-    font-size: 1.2em;
-    padding: 0 0 1px;
-	vertical-align: top;
-    background-color: white;
-    
-    text-shadow: 0 1px 0 white;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .22)), to(rgba(0,0,0, .22)));
-
-    border: 1px solid #cacaca;
-    /*border-left-color: transparent;*/
-    
-    -webkit-border-top-right-radius: 5px;
-    -webkit-border-bottom-right-radius: 5px;
-
-    -moz-border-radius-topright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-.ui-button:hover {
-    background-color: #DDD;
-    cursor: pointer;
-}
-
-/* Expanded menu */
-.ui-menu {
-    background-color: white;
-    border: 1px solid #CACACA;
-    width: 200px;
-    list-style: none;
-    margin: 0; padding: 0;
-}
-.ui-menu li a {
-	display: block;
-    padding: 2px 10px;
-}
-.ui-menu li:nth-child(even) {
-    background-color: #EFF3FE;
-}
-.ui-menu li a:hover {
-    background-color: #3875D7;
-    color: white;
-    cursor: pointer;
 }
