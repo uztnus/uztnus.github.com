@@ -60,8 +60,18 @@ $(function() {
     	  g_morseAudio._test();
       });
     
-    $( "#wpm" ).combobox();
-    $( "#pitch" ).combobox();
+
+    $( "#wpm" ).change(function() {
+    	 sel=$(this).find(":selected").val();
+    	 g_morseAudio.setUnitLength(sel);
+        
+    });
+    $( "#pitch" ).change(function() {
+   	 sel=$(this).find(":selected").val();
+   	 g_morseAudio.setPitch(sel);
+       
+   });
+
     $('#mt-stats-table').dataTable({
     		"bPaginate": true,
             "bLengthChange": false,
