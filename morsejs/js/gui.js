@@ -48,6 +48,7 @@ $(function() {
           primary: "ui-icon-play"
         }
       });
+      g_morseAudio.stop();
     });
     $( "#test" ).button({
         text: false,
