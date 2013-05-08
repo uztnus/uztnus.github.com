@@ -44,6 +44,7 @@ $(function() {
 	$( "#wpm" ).change(function() {
 		sel=$(this).find(":selected").val();
 		g_morseAudio.setUnitLength(sel);
+		$('#mt-unit').text(parseFloat(g_morseAudio.getUnitLength()).toFixed(2));
 
 	});
 	$( "#pitch" ).change(function() {
@@ -52,6 +53,8 @@ $(function() {
 
 	});
 
+	$("#wpm").val("15").change();
+	$("#pitch").val("700").change();
 	$('#mt-stats-table').dataTable({
 		"bPaginate": true,
 		"bLengthChange": false,

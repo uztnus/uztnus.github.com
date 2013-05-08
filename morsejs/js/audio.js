@@ -57,7 +57,10 @@ function MorseAudio(onStart,onDone){
 			this._pitch=newPitch;
 		}
 	};
-
+	this.getUnitLength=function(){
+		return this._unitTime;		
+		
+	};
 
 }
 
