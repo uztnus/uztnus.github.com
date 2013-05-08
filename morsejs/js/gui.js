@@ -1,7 +1,7 @@
 //Globals
 var g_dict=MORSE_EN;
 var g_translator=new MorseTraslator(g_dict);
-var g_morseAudio=new MorseAudio(startedPlaying,finishedPlaying);
+var g_morseAudio=new MorseAudio(startedPlaying,finishedPlaying,onPassed);
 
 $(function() {
 	$( "#mt-tabs" ).tabs();
@@ -15,7 +15,7 @@ $(function() {
 
 		if ( $( this ).text() === "play" ) {
 			if($('#mt-tabs').tabs("option","active")==0){
-				toPlay=$('#translated').val();
+				toPlay=$('#translated').text();
 				g_morseAudio.play(toPlay);
 			}
 		}else{
@@ -142,4 +142,13 @@ function startedPlaying (){
 	};
 	$( "#play" ).button( "option", options );
 
+}
+
+
+function onPassed(dits){
+	console.log('passed '+dits+" dits");
+	var played=$('#translated').text();
+//		for (var i=0; i < texto.length; i++) {
+//			console.log(texto.charAt(i));
+//		}
 }
