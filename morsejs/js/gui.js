@@ -26,10 +26,10 @@ $(function() {
 				}
 			});
 			g_morseAudio.stop();
-			
+
 		}
 	});
-	
+
 	$( "#test" ).button({
 		text: false,
 		icons: {
@@ -146,9 +146,29 @@ function startedPlaying (){
 
 
 function onPassed(dits){
-	console.log('passed '+dits+" dits");
-	var played=$('#translated').text();
-//		for (var i=0; i < texto.length; i++) {
-//			console.log(texto.charAt(i));
-//		}
+	console.log('passed '+dits+" s passed "+new Date());
+	var played=$('#translated').text().replace("<span class='passed'>",'').replace("</span>",'');
+	var bold="";
+	var u=g_morseAudio.getUnitLength();
+	var tillNow=0;
+	var morseTillNow="";
+	var i=0;
+	for (i=0; i < played.length&&tillNow<dits; i++) {
+		switch (played.charAt(i)) {
+		case '.':
+			tillNow+=2*u;
+			break;
+		case '-':
+			tillNow+=4*u;
+			break;
+		case ' ':
+			tillNow+=2*u;
+			break;
+		default:
+			break;
+		}
+		morseTillNow+=played.charAt(i);
+	}
+	$('#translated').html("<span class='passed'>"+morseTillNow+"</span>"+played.substring(i));
+
 }

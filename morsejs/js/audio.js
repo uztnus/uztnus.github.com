@@ -22,7 +22,7 @@ function MorseAudio(onStart,onDone,onPassed){
 		}
 		samplesToGenerate = Math.min(samplesToGenerate, self._sample.length - self._samplePos);
 		if (samplesToGenerate > 0) {
-			onPassed(self._samplePos/self.SAMPLE_RATE*self._unitTime);
+			onPassed((self._samplePos)/self.SAMPLE_RATE*1000);
 			ret = self._sample.slice(self._samplePos,self._samplePos+ samplesToGenerate);
 			self._samplePos += samplesToGenerate;
 			return ret;
