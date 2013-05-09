@@ -86,7 +86,7 @@ $(function() {
 	.click(function() {
 	});
 	$('#playData').bind('input propertychange',function() {
-		$('#translated').text(g_translator.translateText($('#playData').val()));
+		$('#translated').text(g_translator.translateText($('#playData').text()));
 	});
 
 });

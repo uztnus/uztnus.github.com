@@ -24,7 +24,7 @@
 </head>
 <body>
  	
-<div id="mt-tabs">
+<div id="mt-tabs"  style="overflow:auto;">
 <div id="toolbar" class="ui-widget-header ui-corner-all"
 			style="width: 100%">
 			<button id="play">play</button>
@@ -80,9 +80,9 @@
     <li><a href="#tabs-2">Trainer</a></li>
     <li><a href="#tabs-3">Stats</a></li>
   </ul>
-  <div id="tabs-1">
-    <span><textarea rows="20" cols="80" id='playData'></textarea></span> 
-    <span id='translated' style="width:100px;height: 200px; border: 1px black solid"></span>
+  <div id="tabs-1" style="width:auto;">
+    <div id='playData' contenteditable="true" style="float:left;width:100px;height: 200px; border: 1px black solid">&nbsp;</div> 
+    <div id='translated' style="float:left; width:100px;height: 200px; border: 1px black solid">&nbsp;</div>
 </p>
   </div>
   <div id="tabs-2">

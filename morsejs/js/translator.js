@@ -2,10 +2,10 @@
 
 
 function MorseTraslator(dictionary){
-	for ( var i in dictionary) {
-		if(!dictionary[i].match("^[\.|-\\s]+$"))
-			throw(new Error("Bad dictionary - char "+i +" contains "+dictionary[i]));
-	}
+//	for ( var i in dictionary) {
+//		if(!dictionary[i].match("^[\.-\\s]+$"))
+//			throw(new Error("Bad dictionary - char "+i +" contains "+dictionary[i]));
+//	}
 	this._dic=dictionary;
 }
 
