@@ -88,7 +88,7 @@ $(function() {
 	$('#playData').bind('input propertychange',function() {
 		$('#translated').text(g_translator.translateText($('#playData').text()));
 	});
-
+	$( "#mt-right" ).accordion({collapsible: true});
 });
 
 
@@ -96,32 +96,20 @@ function populateDictionaryTable(dict){
 	k=Object.keys(dict);
 	half=k.length/2;
 	data=[];
-	for(var i=0;i<half;i++){
-		data.push([k[i],dict[k[i]],k[i+half],dict[k[i+half]]]);
+
+	m=$('#mt-codes>tbody');
+	for(var i=0;i<k.length;i=i+2){
+		m.append('<tr><td><span class="mt-codes-butt">'+k[i]+' '+dict[k[i]]+'</span></td>'+
+				'<td><span class="mt-codes-butt">'+k[i+1]+' '+dict[k[i+1]]+'</td></tr>'); 
 	}
-
-
-	$('#mt-codes').dataTable({
-		"bPaginate": false,
-		"bLengthChange": false,
-		"bFilter": false,
-		"bSort": true,
-		"bInfo": true,
-		"bAutoWidth": true,
-		"bJQueryUI": true,
-		"aoColumns":[  { "sTitle": "Sign" }, { "sTitle": "Code" },{ "sTitle": "Sign" }, { "sTitle": "Code" }],
-		"aaData":data
-	});
-	$('#mt-codes>tbody>tr>td').click(function(e){
-		t=e.currentTarget.innerText;
+	$('.mt-codes-butt').button().click(function(e){
+		t=e.currentTarget.innerText.split(' ')[1];
 		toPlay=t;
 		if(!g_morseAudio.validate(t)){
 			toPlay=g_translator.translateText(t);
 		}
 		g_morseAudio.play(toPlay);
 	});
-
-	$( "#mt-right" ).accordion();
 
 };
 
