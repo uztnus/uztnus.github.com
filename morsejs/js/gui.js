@@ -120,6 +120,9 @@ function populateDictionaryTable(dict){
 		}
 		g_morseAudio.play(toPlay);
 	});
+
+	$( "#mt-right" ).accordion();
+
 };
 
 

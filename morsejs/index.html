@@ -23,166 +23,187 @@
 <script src="js/gui.js"></script>
 </head>
 <body>
- 	
-<div id="mt-tabs"  style="overflow:auto;">
-<div id="toolbar" class="ui-widget-header ui-corner-all"
-			style="width: 100%">
-			<button id="play">play</button>
-			<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			</span> Speed <select  id="wpm">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12">12</option>
-				<option value="13">13</option>
-				<option value="14">14</option>
-				<option value="15" selected>15</option>
-				<option value="16">16</option>
-				<option value="17">17</option>
-				<option value="18">18</option>
-				<option value="19">19</option>
-			</select> WPM <span>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> Pitch <select
-				id="pitch">
-				<option value="100">100</option>
-				<option value="200">200</option>
-				<option value="300">300</option>
-				<option value="400">400</option>
-				<option value="500">500</option>
-				<option value="600">600</option>
-				<option value="700" selected>700</option>
-				<option value="800">800</option>
-				<option value="900">900</option>
-				<option value="1000">1000</option>
-				<option value="1100">1100</option>
-				<option value="1200">1200</option>
-				<option value="1300">1300</option>
-				<option value="1400">1400</option>
-				<option value="1500">1500</option>
-				<option value="1600">1600</option>
-				<option value="1700">1700</option>
-				<option value="1800">1800</option>
-				<option value="1900">1900</option>
-			</select>
-			<button id="test">test</button>
-		</div>
-		<!-- end toolbar-->
-  <ul>
-    <li><a href="#tabs-1">Traslator</a></li>
-    <li><a href="#tabs-2">Trainer</a></li>
-    <li><a href="#tabs-3">Stats</a></li>
-  </ul>
-  <div id="tabs-1" style="width:auto;">
-    <div id='playData' contenteditable="true" style="float:left;width:100px;height: 200px; border: 1px black solid">&nbsp;</div> 
-    <div id='translated' style="float:left; width:100px;height: 200px; border: 1px black solid">&nbsp;</div>
-</p>
-  </div>
-  <div id="tabs-2">
-	
-		<div id='mt-main'
-			style='display: inline-block; width: 100%; height: 80%; '>
-			&nbsp;
-			<div id='mt-left'
-				style='float: left; width: 55%; height: 100%; '>
-				<div id='mt-output'>
-					<textarea name="comments" rows="20" style="width: 98%;">
+	<div id='mt-main'
+		style='display: inline-block; width: 60%; height: 100%;'>
+		<div id="mt-tabs"
+			style="display: inline-block; overflow: auto; width: 65%">
+			<div id="toolbar" class="ui-widget-header ui-corner-all"
+				style="width: 98%">
+				<button id="play">play</button>
+				<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</span> Speed <select id="wpm">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15" selected>15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+				</select> WPM <span>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> Pitch <select
+					id="pitch">
+					<option value="100">100</option>
+					<option value="200">200</option>
+					<option value="300">300</option>
+					<option value="400">400</option>
+					<option value="500">500</option>
+					<option value="600">600</option>
+					<option value="700" selected>700</option>
+					<option value="800">800</option>
+					<option value="900">900</option>
+					<option value="1000">1000</option>
+					<option value="1100">1100</option>
+					<option value="1200">1200</option>
+					<option value="1300">1300</option>
+					<option value="1400">1400</option>
+					<option value="1500">1500</option>
+					<option value="1600">1600</option>
+					<option value="1700">1700</option>
+					<option value="1800">1800</option>
+					<option value="1900">1900</option>
+				</select>
+				<button id="test">test</button>
+			</div>
+			<!-- end toolbar-->
+			<ul>
+				<li><a href="#tabs-1">Traslator</a></li>
+				<li><a href="#tabs-2">Trainer</a></li>
+				<li><a href="#tabs-3">Stats</a></li>
+			</ul>
+			<div id="tabs-1" style="width: auto;">
+				<div id='playData' contenteditable="true"
+					style="width: 30%; height: 200px; border: 1px black solid">&nbsp;</div>
+				<div id='translated'
+					style="float: left; width: 30%; height: 100px; border: 1px black solid">&nbsp;</div>
+				</p>
+			</div>
+			<div id="tabs-2">
+
+				<div id='mt-main'
+					style='display: inline-block; width: 100%; height: 80%;'>
+					&nbsp;
+					<div id='mt-left' style='float: left; width: 55%; height: 100%;'>
+						<div id='mt-output'>
+							<textarea name="comments" rows="20" style="width: 98%;">
 Morse output
 </textarea>
-				</div>
-				<div id='mt-left-low'>
-					<div id='mt-stats' style="width: 60%; float: left;">
-						<u><b>Statistics</b></u>
-						<table id='mt-stats-table' class='display'>
-							<thead>
-								<tr>
-									<th>Sign</th>
-									<th>Hit</th>
-									<th>Miss</th>
-									<th>%</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>R</td>
-									<td>20</td>
-									<td>2</td>
-									<td>90%</td>
-								</tr>
-								<tr>
-									<td>S</td>
-									<td>20</td>
-									<td>2</td>
-									<td>90%</td>
-								</tr>
-								<tr>
-									<td>M</td>
-									<td>20</td>
-									<td>2</td>
-									<td>90%</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Total</th>
-									<th>60</th>
-									<th>6</th>
-									<th>90%</th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<div id='mt-time' style="width: 35%; float: left;">
-						<u><b>Time</b></u> <br> <input type='text' value="300">
-						<br> <b>One unit:</b> <span id='mt-unit'>120</span>ms <br>
-						<table id='mt-time-explanation'>
-							<thead>
-								<tr>
-									<th>Symbol</th>
-									<th>Units</th>
-								</tr>
-								</thead>
-								<tr>
-									<td>dit</td>
-									<td>1 sound , 1 silence</td>
-								</tr>
-								<tr>
-									<td>dah</td>
-									<td>3 sound , 1 silence</td>
-								</tr>
-								<tr>
-									<td>End of letter</td>
-									<td>additional 2 silence (besides the silence after dit/dah)</td>
-								</tr>
-								<tr>
-									<td>Space (end of word)</td>
-									<td>additional 4 units of silence</td>
-								</tr>
-						</table>
+						</div>
+						<div id='mt-left-low'>
+							<div id='mt-stats' style="width: 60%; float: left;">
+								<u><b>Statistics</b></u>
+								<table id='mt-stats-table' class='display'>
+									<thead>
+										<tr>
+											<th>Sign</th>
+											<th>Hit</th>
+											<th>Miss</th>
+											<th>%</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>R</td>
+											<td>20</td>
+											<td>2</td>
+											<td>90%</td>
+										</tr>
+										<tr>
+											<td>S</td>
+											<td>20</td>
+											<td>2</td>
+											<td>90%</td>
+										</tr>
+										<tr>
+											<td>M</td>
+											<td>20</td>
+											<td>2</td>
+											<td>90%</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Total</th>
+											<th>60</th>
+											<th>6</th>
+											<th>90%</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+							
+						</div>
 					</div>
 				</div>
 			</div>
-			<div id='mt-right'
-				style='float: left; width: 35%; height: 100%; '>
-				<table id=mt-codes>
-				</table>
+			<div id="tabs-3">
+				<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse
+					potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque
+					rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante.
+					Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+					per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim
+					commodo pellentesque. Praesent eu risus hendrerit ligula tempus
+					pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a,
+					lacus.</p>
+				<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at,
+					semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra
+					justo vitae neque. Praesent blandit adipiscing velit. Suspendisse
+					potenti. Donec mattis, pede vel pharetra blandit, magna ligula
+					faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque.
+					Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi
+					lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean
+					vehicula velit eu tellus interdum rutrum. Maecenas commodo.
+					Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae
+					lectus hendrerit hendrerit.</p>
 			</div>
 		</div>
-  </div>
-  <div id="tabs-3">
-    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
-  </div>
-</div>
-	<div id='morsetrainer' style="width: 99%">
-
+		<div id='mt-right'
+			style='display: inline-block; float: right; width: 33%; height: 100%;'>
+			<h3>Letter codes</h3>
+			<table id=mt-codes>
+			</table>
+			<h3>Time explanation</h3>
+			<div id='mt-time' style="width: 100%; ">
+								<u><b>Time</b></u> <br> <input type='text' value="300">
+								<br> <b>One unit:</b> <span id='mt-unit'>120</span>ms <br>
+								<table id='mt-time-explanation'>
+									<thead>
+										<tr>
+											<th>Symbol</th>
+											<th>Units</th>
+										</tr>
+									</thead>
+									<tr>
+										<td>dit</td>
+										<td>1 sound , 1 silence</td>
+									</tr>
+									<tr>
+										<td>dah</td>
+										<td>3 sound , 1 silence</td>
+									</tr>
+									<tr>
+										<td>End of letter</td>
+										<td>additional 2 silence (besides the silence after
+											dit/dah)</td>
+									</tr>
+									<tr>
+										<td>Space (end of word)</td>
+										<td>additional 4 units of silence</td>
+									</tr>
+								</table>
+							</div>
+		</div>
 	</div>
 
 </body>
