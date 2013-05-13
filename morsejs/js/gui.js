@@ -88,7 +88,7 @@ $(function() {
 	$('#playData').bind('input propertychange',function() {
 		$('#translated').text(g_translator.translateText($('#playData').text()));
 	});
-	$( "#mt-right" ).accordion({collapsible: true});
+	$( "#mt-right" ).accordion({collapsible: true,active:false});
 });
 
 

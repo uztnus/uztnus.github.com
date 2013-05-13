@@ -19,3 +19,8 @@ body {
 	font: bold;
 	color: red; 
 }
+
+.wrapper {
+    width: 100%;
+    text-align: center;
+}
