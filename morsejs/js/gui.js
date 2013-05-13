@@ -83,8 +83,8 @@ function populateDictionaryTable(dict){
 
 	m=$('#mt-codes>tbody');
 	for(var i=0;i<k.length;i=i+2){
-		m.append('<tr><td><span class="mt-codes-butt"><b>'+k[i]+'</b> '+dict[k[i]]+'</span></td>'+
-				'<td><span class="mt-codes-butt"><b>'+k[i+1]+'</b> '+dict[k[i+1]]+'</td></tr>'); 
+		m.append('<tr><td><span class="mt-codes-butt"><i>'+k[i]+'</i> <b>'+dict[k[i]]+'</b></span></td>'+
+				'<td><span class="mt-codes-butt"><i>'+k[i+1]+'</i> <b>'+dict[k[i+1]]+'</b></td></tr>'); 
 	}
 	$('.mt-codes-butt').button().click(function(e){
 		t=e.currentTarget.innerText.split(' ')[1];
