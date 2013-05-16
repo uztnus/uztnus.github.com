@@ -65,26 +65,10 @@ $(function() {
 		"bJQueryUI": true
 
 	});
-	$('#mt-time-explanation').dataTable({
-		"bPaginate": false,
-		"bLengthChange": false,
-		"bFilter": false,
-		"bSort": false,
-		"bInfo": false,
-		"bAutoWidth": true,
-		"bJQueryUI": true
 
-	});
 
 	populateDictionaryTable(g_dict);
-	$( "#mt-play-translated" ).button({
-		text: false,
-		icons: {
-			primary: "ui-icon-play"
-		}
-	})
-	.click(function() {
-	});
+
 	$('#playData').bind('input propertychange',function() {
 		$('#translated').text(g_translator.translateText($('#playData').text()));
 	});
@@ -94,7 +78,7 @@ $(function() {
 
 function populateDictionaryTable(dict){
 	k=Object.keys(dict);
-	half=k.length/2;
+	k=k.sort();
 	data=[];
 
 	m=$('#mt-codes>tbody');
