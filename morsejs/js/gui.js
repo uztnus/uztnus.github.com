@@ -83,15 +83,17 @@ function populateDictionaryTable(dict){
 
 	m=$('#mt-codes>tbody');
 	for(var i=0;i<k.length;i=i+2){
-		m.append('<tr><td><span class="mt-codes-butt"><i>'+k[i]+'</i> <b>'+dict[k[i]]+'</b></span></td>'+
-				'<td><span class="mt-codes-butt"><i>'+k[i+1]+'</i> <b>'+dict[k[i+1]]+'</b></td></tr>'); 
+		m.append('<tr><td><span class="mt-codes-butt"><span class="mt-codes">'+k[i]+'</span><span class="mt-codes-morse">'+dict[k[i]]+'</span></span></td>'+
+				'<td><span class="mt-codes-butt"><span class="mt-codes">'+k[i+1]+'  </span><span class="mt-codes-morse">'+dict[k[i+1]]+'</span></span></td></tr>'); 
 	}
+
 	$('.mt-codes-butt').button().click(function(e){
-		t=e.currentTarget.innerText.split(' ')[1];
+		t=$(this).find('span.mt-codes-morse').text();
 		toPlay=t;
 		if(!g_morseAudio.validate(t)){
 			toPlay=g_translator.translateText(t);
 		}
+		
 		g_morseAudio.play(toPlay);
 	});
 
@@ -121,7 +123,7 @@ function startedPlaying (){
 
 
 function onPassed(dits){
-	console.log('passed '+dits+" s passed "+new Date());
+//	console.log('passed '+dits+" s passed "+new Date());
 	var played=$('#translated').text().replace("<span class='passed'>",'').replace("</span>",'');
 	var bold="";
 	var u=g_morseAudio.getUnitLength();

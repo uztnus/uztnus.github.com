@@ -28,6 +28,7 @@ function MorseAudio(onStart,onDone,onPassed){
 			return ret;
 		} else {
 			self._playing = false;
+			onPassed((self._samplePos)/self.SAMPLE_RATE*1000);
 			onDone();
 			return [];
 		}
