@@ -1,5 +1,5 @@
 //Globals
-var g_dict=MORSE_EN;
+var g_dict=LANG['EN']['dict'];
 var g_translator=new MorseTraslator(g_dict);
 var g_morseAudio=new MorseAudio(startedPlaying,finishedPlaying,onPassed);
 var g_currentLesson="";
