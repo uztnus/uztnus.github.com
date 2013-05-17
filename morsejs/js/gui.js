@@ -24,10 +24,12 @@ $(function() {
 					g_morseAudio.play(toPlay,onPassedPassedTraslation,finishedTranslatedPlaying);
 					break;
 				case 1:
-					toPlay=g_currentLesson;
+					letters=$('#mt-lesson-select').find(':selected').val();
+					lesson=generateLesson(letters.toLowerCase());
+					$('#mt-lesson-text').text(lesson);
+					$('#mt-lesson-morse').text(g_translator.translateText(lesson));
+
 					break;
-				default:
-					toPlay="";
 			}
 			
 		}else{
