@@ -31,10 +31,15 @@ font-size: 60% !important;
 }
 
 .mt-codes{
-color: blue;
+font-weight: bold;
+border-right: 1px dashed silver;
 	}
 .mt-codes-morse{
 
 	color: black;
 	
+}
+
+.mt-signs-col{
+	border-right: 5px double  silver;
 }

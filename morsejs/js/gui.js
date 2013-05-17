@@ -2,7 +2,8 @@
 var g_dict=MORSE_EN;
 var g_translator=new MorseTraslator(g_dict);
 var g_morseAudio=new MorseAudio(startedPlaying,finishedPlaying,onPassed);
-
+var g_currentLesson="";
+var g_playingTranslated=false;
 $(function() {
 	$( "#mt-tabs" ).tabs();
 	$( "#play" ).button({
@@ -14,10 +15,19 @@ $(function() {
 	.click(function() {
 
 		if ( $( this ).text() === "play" ) {
-			if($('#mt-tabs').tabs("option","active")==0){
-				toPlay=$('#translated').text();
-				g_morseAudio.play(toPlay);
+			activeTab=$('#mt-tabs').tabs("option","active");
+			switch(activeTab){
+				case 0:
+					toPlay=$('#translated').text();
+					g_playingTranslated=true;
+					break;
+				case 1:
+					toPlay=g_currentLesson;
+					break;
+				default:
+					toPlay="";
 			}
+			g_morseAudio.play(toPlay);
 		}else{
 			$( this ).button( "option", {
 				label: "play",
@@ -83,17 +93,17 @@ function populateDictionaryTable(dict){
 
 	m=$('#mt-codes>tbody');
 	for(var i=0;i<k.length;i=i+2){
-		m.append('<tr><td><span class="mt-codes-butt"><span class="mt-codes">'+k[i]+'</span><span class="mt-codes-morse">'+dict[k[i]]+'</span></span></td>'+
-				'<td><span class="mt-codes-butt"><span class="mt-codes">'+k[i+1]+'  </span><span class="mt-codes-morse">'+dict[k[i+1]]+'</span></span></td></tr>'); 
+		m.append('<tr><td class="mt-codes">'+k[i]+'</td><td class="mt-signs-col mt-codes-morse">'+dict[k[i]]+'</td>'+
+				'<td class="mt-codes">'+k[i+1]+'  </td><td class="mt-codes-morse">'+dict[k[i+1]]+'</td></tr>'); 
 	}
 
-	$('.mt-codes-butt').button().click(function(e){
-		t=$(this).find('span.mt-codes-morse').text();
-		toPlay=t;
-		if(!g_morseAudio.validate(t)){
-			toPlay=g_translator.translateText(t);
-		}
-		
+	$('.mt-codes-morse').click(function(e){
+		t=$(this).text();
+		g_morseAudio.play(t);
+	});
+	$('.mt-codes').click(function(e){
+		t=$(this).text();
+		toPlay=g_translator.translateText(t);
 		g_morseAudio.play(toPlay);
 	});
 
@@ -108,6 +118,7 @@ function finishedPlaying(){
 			}
 	};
 	$( "#play" ).button( "option", options );	
+	g_playingTranslated=false;
 }
 
 function startedPlaying (){
@@ -124,8 +135,9 @@ function startedPlaying (){
 
 function onPassed(dits){
 //	console.log('passed '+dits+" s passed "+new Date());
+	if(!g_playingTranslated)
+		return;
 	var played=$('#translated').text().replace("<span class='passed'>",'').replace("</span>",'');
-	var bold="";
 	var u=g_morseAudio.getUnitLength();
 	var tillNow=0;
 	var morseTillNow="";
