@@ -1,8 +1,10 @@
 //Globals
-var g_dict=LANG['EN']['dict'];
+var g_morseLang='EN';
+var g_dict=LANG[g_morseLang]['dict'];
+
 var g_translator=new MorseTraslator(g_dict);
 var g_morseAudio=new MorseAudio(startedPlaying,finishedPlaying,onPassed);
-var g_currentLesson="";
+
 var g_playingTranslated=false;
 $(function() {
 	$( "#mt-tabs" ).tabs();
@@ -176,3 +178,4 @@ function lesson(letters){
 	dd.addClass('mt-lesson-codes');
 	dd.next().addClass('mt-lesson-codes');
 }
+
