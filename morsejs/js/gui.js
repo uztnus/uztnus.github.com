@@ -3,9 +3,9 @@ var g_morseLang='EN';
 var g_dict=LANG[g_morseLang]['dict'];
 
 var g_translator=new MorseTraslator(g_dict);
-var g_morseAudio=new MorseAudio(startedPlaying,finishedPlaying,onPassed);
+var g_morseAudio=new MorseAudio(startedPlaying);
 
-var g_playingTranslated=false;
+
 $(function() {
 	$( "#mt-tabs" ).tabs();
 	$( "#play" ).button({
@@ -21,7 +21,7 @@ $(function() {
 			switch(activeTab){
 				case 0:
 					toPlay=$('#translated').text();
-					g_playingTranslated=true;
+					g_morseAudio.play(toPlay,onPassedPassedTraslation,finishedTranslatedPlaying);
 					break;
 				case 1:
 					toPlay=g_currentLesson;
@@ -29,16 +29,9 @@ $(function() {
 				default:
 					toPlay="";
 			}
-			g_morseAudio.play(toPlay);
+			
 		}else{
-			$( this ).button( "option", {
-				label: "play",
-				icons: {
-					primary: "ui-icon-play"
-				}
-			});
 			g_morseAudio.stop();
-
 		}
 	});
 
@@ -82,7 +75,9 @@ $(function() {
 	populateDictionaryTable(g_dict);
 
 	$('#playData').bind('input propertychange',function() {
-		$('#translated').text(g_translator.translateText($('#playData').text()));
+		
+		mText=g_translator.translateText($(this).text());
+		$('#translated').html(mText);
 	});
 	$( "#mt-right" ).accordion({collapsible: true,active:false});
 	$('#mt-lesson-select').change(function() 
@@ -117,7 +112,7 @@ function populateDictionaryTable(dict){
 };
 
 
-function finishedPlaying(){
+function finishedTranslatedPlaying(){
 	var options = {
 			label: "play",
 			icons: {
@@ -125,7 +120,7 @@ function finishedPlaying(){
 			}
 	};
 	$( "#play" ).button( "option", options );	
-	g_playingTranslated=false;
+	$('#translated').html($('#translated').text());
 }
 
 function startedPlaying (){
@@ -140,10 +135,8 @@ function startedPlaying (){
 }
 
 
-function onPassed(dits){
+function onPassedPassedTraslation(dits){
 //	console.log('passed '+dits+" s passed "+new Date());
-	if(!g_playingTranslated)
-		return;
 	var played=$('#translated').text().replace("<span class='passed'>",'').replace("</span>",'');
 	var u=g_morseAudio.getUnitLength();
 	var tillNow=0;
@@ -179,3 +172,46 @@ function lesson(letters){
 	dd.next().addClass('mt-lesson-codes');
 }
 
+function getContentLength(element) {
+    var stack = [element];
+    var total = 0;
+    var current;
+    
+    while(current = stack.pop()) {
+        for(var i = 0; i < current.childNodes.length; i++) {
+            if(current.childNodes[i].nodeType === 1) {
+                stack.push(current.childNodes[i]);
+            } else if(current.childNodes[i].nodeType === 3) {
+                total += current.childNodes[i].nodeValue.length;
+            }
+        }
+    }
+    
+    return total;
+}
+
+function getSelectionOffsetFrom(parent) {
+    var sel = window.getSelection();
+    var current = sel.anchorNode;
+    var offset = sel.anchorOffset;
+
+    while(current && current !== parent) {
+        var sibling = current;
+
+        while(sibling = sibling.previousSibling) {
+            if(sibling.nodeType === 3) {
+                offset += sibling.nodeValue.length;
+            } else if(sibling.nodeType === 1) {
+                offset += getContentLength(sibling);
+            }
+        }
+
+        current = current.parentNode;
+    }
+
+    if(!current) {
+        return null;
+    }
+
+    return offset;
+}

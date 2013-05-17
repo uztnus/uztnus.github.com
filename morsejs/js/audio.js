@@ -2,7 +2,7 @@ var UNITS_PER_WORD = 70;
 
 
 
-function MorseAudio(onStart,onDone,onPassed){
+function MorseAudio(onStart){
 	this.SAMPLE_RATE=8000;
 	this._sample = [];
 	self=this;
@@ -11,10 +11,15 @@ function MorseAudio(onStart,onDone,onPassed){
 	this._pitch=700;
 	this._unitTime=80;
 	this._onStart=onStart;
+	this._onPassed=null;
+	this._onFinish=null;
 	this._audioGenerator=function(samplesToGenerate) {
 		if(!self._playing){
 			self._samplePos=0;
 			self._sample=[];
+			if(self._onFinish!=null){
+				self._onFinish();
+			}
 			return [];
 		}
 		if (samplesToGenerate == 0) {
@@ -22,14 +27,20 @@ function MorseAudio(onStart,onDone,onPassed){
 		}
 		samplesToGenerate = Math.min(samplesToGenerate, self._sample.length - self._samplePos);
 		if (samplesToGenerate > 0) {
-			onPassed((self._samplePos)/self.SAMPLE_RATE*1000);
+			if(self._onPassed!=null){
+				self._onPassed((self._samplePos)/self.SAMPLE_RATE*1000);
+			}
 			ret = self._sample.slice(self._samplePos,self._samplePos+ samplesToGenerate);
 			self._samplePos += samplesToGenerate;
 			return ret;
 		} else {
 			self._playing = false;
-			onPassed((self._samplePos)/self.SAMPLE_RATE*1000);
-			onDone();
+			if(self._onPassed!=null){
+				self._onPassed((self._samplePos)/self.SAMPLE_RATE*1000);
+			}
+			if(self._onFinish!=null){
+				self._onFinish();
+			}
 			return [];
 		}
 	};
@@ -46,6 +57,11 @@ function MorseAudio(onStart,onDone,onPassed){
 		        //Runs the check to see if we need to give more audio data to the lib:
 		        if (self._playing) {
 		            self._audioServer.executeCallback();
+		        }else if(self._samplePos>0){
+		        	if(self._onFinish!=null){
+		        		self._samplePos=0;
+		        		self._onFinish();
+		        	}
 		        }
 		    }, 20);
 	this.setUnitLength=function(wpm){
@@ -112,7 +128,7 @@ MorseAudio.prototype._test = function () {
 	this.play("... -. -- .-. ... -- ... --  ");
 };
 
-MorseAudio.prototype.play = function (string) {
+MorseAudio.prototype.play = function (string,onPassed,onFinish) {
 	if(this.isPlaying()){
 		console.log("Currently playing - please stop");
 		return;
@@ -121,6 +137,8 @@ MorseAudio.prototype.play = function (string) {
 		console.log("Cant play an empty string");
 		return;
 	}
+	this._onPassed=onPassed;
+	this._onFinish=onFinish;
 	this._onStart();
 	times=this.createTimeArray(string);
 	this._sample =this._createBuffer(times);
