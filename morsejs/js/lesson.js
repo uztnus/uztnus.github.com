@@ -61,7 +61,13 @@ function generateLesson(letters){
 function onPassedLesson(secs){
 	var played=$('#mt-lesson-morse').text();
 	var i=passedMorse(played,secs);
-	$('#mt-lesson-morse').html("<span class='passed'>"+played.substring(0,i)+"</span>"+played.substring(i));
+	var playedMorse=played.substring(0,i);
+	$('#mt-lesson-morse').html("<span class='passed'>"+playedMorse+"</span>"+played.substring(i));
+	var playedFullMorse=playedMorse.substring(0,playedMorse.lastIndexOf(" "));
+	var playedChars=g_translator.translateMorse(playedFullMorse);
+	var fullText=$('#mt-lesson-text').text();
+	$('#mt-lesson-text').html("<span class='passed'>"+fullText.substring(0,playedChars.length)+"</span>"+fullText.substring(playedChars.length));
+	
 
 }
 
@@ -75,6 +81,7 @@ function finishedLessonPlaying(){
 	};
 	$( "#play" ).button( "option", options );	
 	$('#mt-lesson-morse').html($('#mt-lesson-morse').text());
+	$('#mt-lesson-text').html($('#mt-lesson-text').text());
 
 }
 
