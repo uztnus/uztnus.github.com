@@ -83,6 +83,11 @@ $(function() {
 		$('#translated').text(g_translator.translateText($('#playData').text()));
 	});
 	$( "#mt-right" ).accordion({collapsible: true,active:false});
+	$('#mt-lesson-select').change(function() 
+			{
+			   lesson($(this).find(':selected').val());
+			});
+	$("#mt-lesson-select").val("Lesson1").change();
 });
 
 
@@ -94,7 +99,7 @@ function populateDictionaryTable(dict){
 	m=$('#mt-codes>tbody');
 	for(var i=0;i<k.length;i=i+2){
 		m.append('<tr><td class="mt-codes">'+k[i]+'</td><td class="mt-signs-col mt-codes-morse">'+dict[k[i]]+'</td>'+
-				'<td class="mt-codes">'+k[i+1]+'  </td><td class="mt-codes-morse">'+dict[k[i+1]]+'</td></tr>'); 
+				'<td class="mt-codes">'+k[i+1]+'</td><td class="mt-codes-morse">'+dict[k[i+1]]+'</td></tr>'); 
 	}
 
 	$('.mt-codes-morse').click(function(e){
@@ -160,4 +165,14 @@ function onPassed(dits){
 	}
 	$('#translated').html("<span class='passed'>"+morseTillNow+"</span>"+played.substring(i));
 
+}
+
+function lesson(letters){
+	$('.mt-codes').removeClass('mt-lesson');
+	$('.mt-codes').next().removeClass('mt-lesson');
+	dd=$('.mt-codes').filter(function(index) {
+		  return letters.indexOf($( this).text())!=-1;
+		});
+	dd.addClass('mt-lesson');
+	dd.next().addClass('mt-lesson');
 }

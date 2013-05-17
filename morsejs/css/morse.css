@@ -43,3 +43,11 @@ border-right: 1px dashed silver;
 .mt-signs-col{
 	border-right: 5px double  silver;
 }
+
+#mt-time-left{
+	border: 5px double  silver;
+}
+
+.mt-lesson{
+	background-color: fuchsia;
+}
