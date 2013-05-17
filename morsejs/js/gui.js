@@ -3,7 +3,7 @@ var g_morseLang='EN';
 var g_dict=LANG[g_morseLang]['dict'];
 
 var g_translator=new MorseTraslator(g_dict);
-var g_morseAudio=new MorseAudio(startedPlaying);
+var g_morseAudio=new MorseAudio();
 
 
 $(function() {
@@ -17,9 +17,17 @@ $(function() {
 	.click(function() {
 
 		if ( $( this ).text() === "play" ) {
+			var options = {
+					label: "pause",
+					icons: {
+						primary: "ui-icon-pause"
+					}
+			};
+			$( "#play" ).button( "option", options );
 			activeTab=$('#mt-tabs').tabs("option","active");
 			switch(activeTab){
 				case 0:
+					$('#playData').attr('contenteditable',false);
 					toPlay=$('#translated').text();
 					g_morseAudio.play(toPlay,onPassedTraslation,finishedTranslatedPlaying);
 					break;
@@ -115,24 +123,22 @@ function finishedTranslatedPlaying(){
 	};
 	$( "#play" ).button( "option", options );	
 	$('#translated').html($('#translated').text());
+	$('#playData').html($('#playData').text());
+	$('#playData').attr('contenteditable',true);
 }
 
-function startedPlaying (){
-	var options = {
-			label: "pause",
-			icons: {
-				primary: "ui-icon-pause"
-			}
-	};
-	$( "#play" ).button( "option", options );
 
-}
 
 
 function onPassedTraslation(dits){
 	var played=$('#translated').text().replace("<span class='passed'>",'').replace("</span>",'');
 	var i=passedMorse(played,dits);
 	$('#translated').html("<span class='passed'>"+played.substring(0,i)+"</span>"+played.substring(i));
+	var playedMorse=played.substring(0,i);
+	var playedFullMorse=playedMorse.substring(0,playedMorse.lastIndexOf(" "));
+	var playedChars=g_translator.translateMorse(playedFullMorse);
+	var fullText=$('#playData').text();
+	$('#playData').html("<span class='passed'>"+fullText.substring(0,playedChars.length)+"</span>"+fullText.substring(playedChars.length));
 
 }
 
