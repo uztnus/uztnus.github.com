@@ -144,8 +144,11 @@ MorseAudio.prototype.play = function (string,onPassed,onFinish) {
 };
 
 MorseAudio.prototype.validate=function(string){
-	if(!string.match("^[\.-\\s]+$"))
-		return false;
+	for(var i=0;i<string.length;i++){
+		var ch=string.charAt(i);
+		if(ch!='.'&&ch!='-'&&ch!=' ')
+			return false;
+	}
 	return true;
 };
 
