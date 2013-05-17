@@ -27,13 +27,17 @@ MorseTraslator.prototype.getLetter = function (encoded) {
 		if(this._dic[i]==encoded)
 			return i;
 	};
+	return 'WRONG --'+encoded+'--';
 };
 
 MorseTraslator.prototype.translateMorse = function (string) {
 	res="";
 	chars=string.split(' ');
 	for ( var i in chars) {
-		res+=this.getLetter(chars[i]);
+		if(chars[i]){
+			res+=this.getLetter(chars[i]);
+		}else
+			res+=' ';
 	}
 	return res;
 };
