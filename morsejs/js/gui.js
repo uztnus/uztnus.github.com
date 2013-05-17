@@ -21,14 +21,15 @@ $(function() {
 			switch(activeTab){
 				case 0:
 					toPlay=$('#translated').text();
-					g_morseAudio.play(toPlay,onPassedPassedTraslation,finishedTranslatedPlaying);
+					g_morseAudio.play(toPlay,onPassedTraslation,finishedTranslatedPlaying);
 					break;
 				case 1:
 					letters=$('#mt-lesson-select').find(':selected').val();
 					lesson=generateLesson(letters.toLowerCase());
 					$('#mt-lesson-text').text(lesson);
-					$('#mt-lesson-morse').text(g_translator.translateText(lesson));
-
+					toPlay=g_translator.translateText(lesson);
+					$('#mt-lesson-morse').text(toPlay);
+					g_morseAudio.play(toPlay,onPassedLesson,finishedLessonPlaying);
 					break;
 			}
 			
@@ -37,16 +38,7 @@ $(function() {
 		}
 	});
 
-	$( "#test" ).button({
-		text: false,
-		icons: {
-			primary: "ui-icon-circle-check"
-		}
-	})
-	.click(function() {
-		g_morseAudio._test();
-	});
-
+	
 
 	$( "#wpm" ).change(function() {
 		sel=$(this).find(":selected").val();
@@ -84,7 +76,7 @@ $(function() {
 	$( "#mt-right" ).accordion({collapsible: true,active:false});
 	$('#mt-lesson-select').change(function() 
 			{
-			   lesson($(this).find(':selected').val());
+				lessonCodes($(this).find(':selected').val());
 			});
 	$("#mt-lesson-select").val("Lesson1").change();
 });
@@ -137,15 +129,19 @@ function startedPlaying (){
 }
 
 
-function onPassedPassedTraslation(dits){
-//	console.log('passed '+dits+" s passed "+new Date());
+function onPassedTraslation(dits){
 	var played=$('#translated').text().replace("<span class='passed'>",'').replace("</span>",'');
+	var i=passedMorse(played,dits);
+	$('#translated').html("<span class='passed'>"+played.substring(0,i)+"</span>"+played.substring(i));
+
+}
+
+function passedMorse(morseText,secs){
 	var u=g_morseAudio.getUnitLength();
 	var tillNow=0;
-	var morseTillNow="";
 	var i=0;
-	for (i=0; i < played.length&&tillNow<dits; i++) {
-		switch (played.charAt(i)) {
+	for (i=0; i < morseText.length&&tillNow<secs; i++) {
+		switch (morseText.charAt(i)) {
 		case '.':
 			tillNow+=2*u;
 			break;
@@ -158,62 +154,9 @@ function onPassedPassedTraslation(dits){
 		default:
 			break;
 		}
-		morseTillNow+=played.charAt(i);
+		
 	}
-	$('#translated').html("<span class='passed'>"+morseTillNow+"</span>"+played.substring(i));
-
+	return i;
 }
 
-function lesson(letters){
-	$('.mt-codes').removeClass('mt-lesson-codes');
-	$('.mt-codes').next().removeClass('mt-lesson-codes');
-	dd=$('.mt-codes').filter(function(index) {
-		  return letters.indexOf($( this).text())!=-1;
-		});
-	dd.addClass('mt-lesson-codes');
-	dd.next().addClass('mt-lesson-codes');
-}
 
-function getContentLength(element) {
-    var stack = [element];
-    var total = 0;
-    var current;
-    
-    while(current = stack.pop()) {
-        for(var i = 0; i < current.childNodes.length; i++) {
-            if(current.childNodes[i].nodeType === 1) {
-                stack.push(current.childNodes[i]);
-            } else if(current.childNodes[i].nodeType === 3) {
-                total += current.childNodes[i].nodeValue.length;
-            }
-        }
-    }
-    
-    return total;
-}
-
-function getSelectionOffsetFrom(parent) {
-    var sel = window.getSelection();
-    var current = sel.anchorNode;
-    var offset = sel.anchorOffset;
-
-    while(current && current !== parent) {
-        var sibling = current;
-
-        while(sibling = sibling.previousSibling) {
-            if(sibling.nodeType === 3) {
-                offset += sibling.nodeValue.length;
-            } else if(sibling.nodeType === 1) {
-                offset += getContentLength(sibling);
-            }
-        }
-
-        current = current.parentNode;
-    }
-
-    if(!current) {
-        return null;
-    }
-
-    return offset;
-}

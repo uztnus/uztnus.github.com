@@ -57,3 +57,33 @@ function generateLesson(letters){
 	return res;
 	
 }
+
+function onPassedLesson(secs){
+	var played=$('#mt-lesson-morse').text();
+	var i=passedMorse(played,secs);
+	$('#mt-lesson-morse').html("<span class='passed'>"+played.substring(0,i)+"</span>"+played.substring(i));
+
+}
+
+
+function finishedLessonPlaying(){
+	var options = {
+			label: "play",
+			icons: {
+				primary: "ui-icon-play"
+			}
+	};
+	$( "#play" ).button( "option", options );	
+	$('#mt-lesson-morse').html($('#mt-lesson-morse').text());
+
+}
+
+function lessonCodes(letters){
+	$('.mt-codes').removeClass('mt-lesson-codes');
+	$('.mt-codes').next().removeClass('mt-lesson-codes');
+	dd=$('.mt-codes').filter(function(index) {
+		  return letters.indexOf($( this).text())!=-1;
+		});
+	dd.addClass('mt-lesson-codes');
+	dd.next().addClass('mt-lesson-codes');
+}
