@@ -168,11 +168,11 @@ function onPassed(dits){
 }
 
 function lesson(letters){
-	$('.mt-codes').removeClass('mt-lesson');
-	$('.mt-codes').next().removeClass('mt-lesson');
+	$('.mt-codes').removeClass('mt-lesson-codes');
+	$('.mt-codes').next().removeClass('mt-lesson-codes');
 	dd=$('.mt-codes').filter(function(index) {
 		  return letters.indexOf($( this).text())!=-1;
 		});
-	dd.addClass('mt-lesson');
-	dd.next().addClass('mt-lesson');
+	dd.addClass('mt-lesson-codes');
+	dd.next().addClass('mt-lesson-codes');
 }

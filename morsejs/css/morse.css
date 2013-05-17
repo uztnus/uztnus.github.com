@@ -48,6 +48,7 @@ border-right: 1px dashed silver;
 	border: 5px double  silver;
 }
 
-.mt-lesson{
-	background-color: fuchsia;
+.mt-lesson-codes{
+	background-color: #F5F5F5;
+	font-size:120%; 
 }
